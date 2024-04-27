@@ -59,6 +59,10 @@ function App(): React.JSX.Element {
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  sectionDescription: {},
+  sectionTitle: {},
+  sectionContainer: {},
+});
 
 export default App;
