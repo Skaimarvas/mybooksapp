@@ -1,6 +1,19 @@
-import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React from 'react';
+//Hooks
+import {useNavigation} from '@react-navigation/native';
+
+//Assets
 import book1 from '../../assets/book1.jpg';
+import previous from '../../assets/previous.png';
+import more from '../../assets/more.png';
 
 /**Notes(Focus top on image)
  * I need to show top cover of the book
@@ -8,12 +21,18 @@ import book1 from '../../assets/book1.jpg';
  *
  */
 const BookDetails = () => {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
-      <View>
-        <Text style={styles.text}>Navigator</Text>
+      <View style={styles.navigator}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Image source={previous} style={styles.navigatorButtonsImage} />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image source={more} style={styles.navigatorButtonsImage} />
+        </TouchableOpacity>
       </View>
-      <View>
+      <View style={styles.bookHeader}>
         <Text style={styles.text}>Book Category</Text>
         <Text style={styles.text}>Book Title</Text>
         <Text style={styles.text}>Book Info</Text>
@@ -24,7 +43,6 @@ const BookDetails = () => {
           <Image style={styles.bookCover} source={book1} />
         </View>
       </View>
-
       <View>
         <Text style={styles.text}>Rating</Text>
       </View>
@@ -62,5 +80,21 @@ const styles = StyleSheet.create({
     height: 185,
     width: '100%',
     marginLeft: 40,
+  },
+  bookHeader: {
+    width: '90%',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
+  navigator: {
+    width: '100%',
+    paddingHorizontal: 15,
+    paddingVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  navigatorButtonsImage: {
+    width: 26,
+    height: 26,
   },
 });
