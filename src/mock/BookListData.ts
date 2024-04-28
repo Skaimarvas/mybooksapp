@@ -1,0 +1,51 @@
+import book1 from '../assets/book1.jpg';
+import book2 from '../assets/book2.jpg';
+import book3 from '../assets/book3.jpg';
+import book4 from '../assets/book4.jpg';
+import book5 from '../assets/book5.jpg';
+import book6 from '../assets/book6.jpg';
+
+export const bookList = [
+  {name: 'sample', image: book1},
+  {name: 'sample', image: book2},
+  {name: 'sample', image: book3},
+  {name: 'sample', image: book4},
+  {name: 'sample', image: book5},
+  {name: 'sample', image: book6},
+  {name: 'sample', image: book1},
+  {name: 'sample', image: book2},
+  {name: 'sample', image: book3},
+  {name: 'sample', image: book4},
+  {name: 'sample', image: book5},
+  {name: 'sample', image: book6},
+  {name: 'sample', image: book1},
+  {name: 'sample', image: book2},
+  {name: 'sample', image: book3},
+  {name: 'sample', image: book4},
+  {name: 'sample', image: book5},
+  {name: 'sample', image: book6},
+  {name: 'sample', image: book1},
+  {name: 'sample', image: book2},
+  {name: 'sample', image: book3},
+  {name: 'sample', image: book4},
+  {name: 'sample', image: book5},
+  {name: 'sample', image: book6},
+  {name: 'sample', image: book1},
+  {name: 'sample', image: book2},
+  {name: 'sample', image: book3},
+  {name: 'sample', image: book4},
+  {name: 'sample', image: book5},
+  {name: 'sample', image: book6},
+  {name: 'sample', image: book1},
+  {name: 'sample', image: book2},
+  {name: 'sample', image: book3},
+  {name: 'sample', image: book4},
+  {name: 'sample', image: book5},
+  {name: 'sample', image: book6},
+  {name: 'sample', image: book1},
+  {name: 'sample', image: book2},
+  {name: 'sample', image: book3},
+  {name: 'sample', image: book4},
+  {name: 'sample', image: book5},
+  {name: 'sample', image: book6},
+];
