@@ -21,7 +21,7 @@ const BookList: React.FC = () => {
             key={i}
             onPress={() => navigation.navigate('BookDetails')}>
             <Image
-              style={[styles.bookImage, {height: i == 1 ? 300 : 280}]}
+              style={[styles.bookImage, {height: i == 1 ? 280 : 280}]}
               source={book.image}
             />
           </TouchableOpacity>
