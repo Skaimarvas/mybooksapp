@@ -1,29 +1,30 @@
+import React from 'react';
 import {
-  Dimensions,
   Image,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
 //Hooks
 import {useNavigation} from '@react-navigation/native';
 
 //Assets
 import book1 from '../../assets/book1.jpg';
-import previous from '../../assets/previous.png';
 import more from '../../assets/more.png';
+import previous from '../../assets/previous.png';
+import star from '../../assets/star.png';
 
 /**Notes(Focus top on image)
  * I need to show top cover of the book
- * Solution: ?
+ * Solution: can't do all images
  *
  */
 const BookDetails = () => {
   const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.navigator}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Image source={previous} style={styles.navigatorButtonsImage} />
@@ -32,24 +33,56 @@ const BookDetails = () => {
           <Image source={more} style={styles.navigatorButtonsImage} />
         </TouchableOpacity>
       </View>
-      <View style={styles.bookHeader}>
-        <Text style={styles.text}>Book Category</Text>
-        <Text style={styles.text}>Book Title</Text>
-        <Text style={styles.text}>Book Info</Text>
-      </View>
-      <View>
-        <Text style={styles.text}>BookCover</Text>
-        <View style={styles.bookCoverBackground}>
-          <Image style={styles.bookCover} source={book1} />
+      <View style={styles.headerContainer}>
+        <View style={styles.bookHeader}>
+          <Text style={styles.category}>HISTORY</Text>
+          <Text style={styles.title}>
+            Always forgive your enemies, nothing annoys.
+          </Text>
+          <View style={styles.info}>
+            <Text style={styles.bookInfo}>Published from istudio</Text>
+            <Text style={styles.bookInfo}>26 Mar, 2024</Text>
+          </View>
         </View>
       </View>
-      <View>
-        <Text style={styles.text}>Rating</Text>
+      <View style={styles.bookCoverBackground}>
+        <Image style={styles.bookCover} source={book1} />
       </View>
-      <View>
-        <Text style={styles.text}>BookDetails</Text>
+      <View style={styles.ratingContainer}>
+        <View style={styles.ratings}>
+          <View style={styles.ratingSection}>
+            <Text style={styles.ratingText}>4.5</Text>
+
+            <View style={styles.starsContainer}>
+              <Image style={styles.stars} source={star} />
+              <Image style={styles.stars} source={star} />
+              <Image style={styles.stars} source={star} />
+              <Image style={styles.stars} source={star} />
+              <Image style={styles.stars} source={star} />
+            </View>
+          </View>
+          <Text style={styles.bookInfo}>892 Ratings on Google Play</Text>
+        </View>
       </View>
-    </View>
+      <View style={styles.detailContainer}>
+        <Text style={styles.detailText}>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
+          dolores id, voluptate quibusdam iure odit voluptatum alias accusantium
+          eveniet accusamus rem maxime provident sunt ducimus obcaecati est
+          enim, adipisci vel? Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Perspiciatis dolores id, voluptate quibusdam iure odit
+          voluptatum alias accusantium eveniet accusamus rem maxime provident
+          sunt ducimus obcaecati est enim, adipisci vel? Lorem ipsum dolor sit
+          amet consectetur adipisicing elit. Perspiciatis dolores id, voluptate
+          quibusdam iure odit voluptatum alias accusantium eveniet accusamus rem
+          maxime provident sunt ducimus obcaecati est enim, adipisci vel? Lorem
+          ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
+          dolores id, voluptate quibusdam iure odit voluptatum alias accusantium
+          eveniet accusamus rem maxime provident sunt ducimus obcaecati est
+          enim, adipisci vel?
+        </Text>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -57,14 +90,25 @@ export default BookDetails;
 
 const styles = StyleSheet.create({
   container: {
-    borderWidth: 1,
-    borderColor: 'lime',
     flexDirection: 'column',
-    justifyContent: 'space-between',
-    height: Dimensions.get('window').height,
   },
   text: {
     color: 'black',
+  },
+  category: {
+    color: 'orange',
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+  title: {
+    color: 'black',
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  bookInfo: {
+    color: 'grey',
+    fontSize: 12,
+    fontWeight: 'light',
   },
   bookCoverBackground: {
     backgroundColor: '#DADADA',
@@ -73,6 +117,11 @@ const styles = StyleSheet.create({
     height: 185,
     width: '100%',
     marginLeft: 20,
+    marginVertical: 15,
+  },
+  info: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   bookCover: {
     borderTopLeftRadius: 40,
@@ -80,6 +129,11 @@ const styles = StyleSheet.create({
     height: 185,
     width: '100%',
     marginLeft: 40,
+  },
+  headerContainer: {
+    width: '100%',
+    alignItems: 'center',
+    paddingVertical: 15,
   },
   bookHeader: {
     width: '90%',
@@ -96,5 +150,42 @@ const styles = StyleSheet.create({
   navigatorButtonsImage: {
     width: 26,
     height: 26,
+  },
+  detailContainer: {
+    width: '100%',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingVertical: 15,
+  },
+  detailText: {
+    width: '90%',
+    color: 'black',
+  },
+  ratingContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    paddingVertical: 10,
+  },
+  ratings: {
+    width: '90%',
+  },
+  ratingText: {
+    color: 'black',
+    fontSize: 30,
+  },
+  ratingSection: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 5,
+  },
+  starsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 100,
+  },
+  stars: {
+    width: 15,
+    height: 15,
   },
 });
