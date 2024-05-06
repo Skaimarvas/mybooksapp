@@ -14,6 +14,7 @@ import ProfilePng from './src/assets/profile.png';
 //Pages
 import Home from './src/screen/Home/HomePage';
 import BookDetails from './src/screen/BookDetails/BookDetails';
+import TopBooks from './src/screen/TopBooks/TopBooks';
 
 /** Notes(backBehavior): 
      * In a React Native app using React Navigation, the backBehavior prop is used to configure the behavior of the back button in a tab navigator.
@@ -34,6 +35,7 @@ export type ScreenParams = {
   BookList: any;
   BookDetails: any;
 
+  TopBooksPage: any;
   TopBooks: any;
 
   AudioBooks: any;
@@ -56,6 +58,17 @@ const HomePageNavigator = () => {
         headerShown: false,
       }}>
       <Screen.Screen name="Home" component={Home} />
+    </Screen.Navigator>
+  );
+};
+
+const TopBooksNavigator = () => {
+  return (
+    <Screen.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Screen.Screen name="TopBooks" component={TopBooks} />
     </Screen.Navigator>
   );
 };
@@ -95,8 +108,8 @@ const BottomNavigator = () => {
         }}
       />
       <BottomTabs.Screen
-        name="TopBooks"
-        component={HomePageNavigator}
+        name="TopBooksPage"
+        component={TopBooksNavigator}
         options={{
           tabBarIcon: ({focused}) => (
             <Image
