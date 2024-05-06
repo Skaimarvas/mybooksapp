@@ -1,20 +1,13 @@
 import React from 'react';
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
 //Hooks
 import {useNavigation} from '@react-navigation/native';
 
 //Assets
 import book1 from '../../assets/book1.jpg';
-import more from '../../assets/more.png';
-import previous from '../../assets/previous.png';
 import star from '../../assets/star.png';
+//Components
+import PageNavigator from '../../components/PageNavigator';
 
 /**Notes(Focus top on image)
  * I need to show top cover of the book
@@ -25,14 +18,7 @@ const BookDetails = () => {
   const navigation = useNavigation();
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.navigator}>
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Image source={previous} style={styles.navigatorButtonsImage} />
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Image source={more} style={styles.navigatorButtonsImage} />
-        </TouchableOpacity>
-      </View>
+      <PageNavigator />
       <View style={styles.headerContainer}>
         <View style={styles.bookHeader}>
           <Text style={styles.category}>HISTORY</Text>
