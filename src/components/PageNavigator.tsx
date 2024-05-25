@@ -1,21 +1,25 @@
 import React from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 //Hooks
 import {useNavigation} from '@react-navigation/native';
 
 //Assets
 import more from '../assets/more.png';
-import previous from '../assets/previous.png';
+import previous from '../assets/leftarrow.png';
 
-const PageNavigator = () => {
+interface Iprops {
+  screenName: string;
+}
+const PageNavigator: React.FC<Iprops> = ({screenName}) => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.navigator}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
+      <TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
         <Image source={previous} style={styles.navigatorButtonsImage} />
       </TouchableOpacity>
+      <Text style={{color: 'black'}}>{screenName}</Text>
       <TouchableOpacity>
         <Image source={more} style={styles.navigatorButtonsImage} />
       </TouchableOpacity>
@@ -32,9 +36,16 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   navigatorButtonsImage: {
     width: 26,
     height: 26,
+  },
+  back: {
+    padding: 4,
+    borderRadius: 50,
+    borderColor: 'grey',
+    borderWidth: 1,
   },
 });
