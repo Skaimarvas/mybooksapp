@@ -5,23 +5,20 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 //Assets
-import more from '../assets/more.png';
-import previous from '../assets/leftarrow.png';
+import save from '../assets/bookmark1.png';
+import close from '../assets/close1.png';
 
-interface Iprops {
-  screenName: string;
-}
-const PageNavigator: React.FC<Iprops> = ({screenName}) => {
+const PageNavigator = () => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.navigator}>
       <TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
-        <Image source={previous} style={styles.navigatorButtonsImage} />
+        <Image source={close} style={styles.navigatorButtonsImage} />
       </TouchableOpacity>
-      <Text style={{color: 'black'}}>{screenName}</Text>
+
       <TouchableOpacity>
-        <Image source={more} style={styles.navigatorButtonsImage} />
+        <Image source={save} style={styles.navigatorButtonsImage} />
       </TouchableOpacity>
     </View>
   );
@@ -44,8 +41,6 @@ const styles = StyleSheet.create({
   },
   back: {
     padding: 4,
-    borderRadius: 50,
-    borderColor: 'grey',
-    borderWidth: 1,
+    color: 'white',
   },
 });
