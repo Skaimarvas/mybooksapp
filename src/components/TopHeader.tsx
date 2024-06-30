@@ -1,8 +1,7 @@
-import {View, Text, StyleSheet, Button, Image} from 'react-native';
 import React from 'react';
+import {Image, StyleSheet, Text, View} from 'react-native';
 
 //Assets
-import MenuButton from '../assets/menu.png';
 import SearchButton from '../assets/search.png';
 
 /**Notes: (rnf)
@@ -13,9 +12,7 @@ import SearchButton from '../assets/search.png';
 export default function TopHeader() {
   return (
     <View style={styles.container}>
-      <Image style={styles.menuButton} source={MenuButton} />
-
-      <Text style={styles.textColor}> All Books</Text>
+      <Text style={styles.textColor}> Hello User!</Text>
       <Image style={styles.menuButton} source={SearchButton} />
     </View>
   );

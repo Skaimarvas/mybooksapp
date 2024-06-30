@@ -1,8 +1,10 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import BookList from './BookList';
+import {ScrollView, StyleSheet} from 'react-native';
+import CuratedPick from '../../components/CuratedPick';
+import TopAuthors from '../../components/TopAuthors';
 import TopHeader from '../../components/TopHeader';
-import SwitchSection from './SwitchSection';
+import WeeklyTops from '../../components/WeeklyTops';
+import DailyInfo from './DailyInfo';
 
 /**Notes(Error: ScrollView child layout ...)
  * Error: ScrollView child layout (["justifyContent"]) must be applied through the contentContainerStyle prop.
@@ -18,11 +20,13 @@ import SwitchSection from './SwitchSection';
 
 const Homepage: React.FC = props => {
   return (
-    <View>
+    <ScrollView>
       <TopHeader />
-      <SwitchSection />
-      <BookList />
-    </View>
+      <DailyInfo />
+      <CuratedPick />
+      <TopAuthors />
+      <WeeklyTops />
+    </ScrollView>
   );
 };
 

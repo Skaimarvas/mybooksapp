@@ -1,72 +1,79 @@
 import React from 'react';
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Dimensions,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 //Hooks
 import {useNavigation} from '@react-navigation/native';
 
 //Assets
-import book1 from '../../assets/book1.jpg';
+import list from '../../assets/List.png';
+import time from '../../assets/Icon.png';
 import star from '../../assets/star.png';
-//Components
+import book1 from '../../assets/book1black.jpg';
 import PageNavigator from '../../components/PageNavigator';
+//Components
 
 /**Notes(Focus top on image)
  * I need to show top cover of the book
  * Solution: can't do all images
  *
  */
+
+const screenHeight = Dimensions.get('screen').height;
+const screenWidth = Dimensions.get('screen').width;
+
 const BookDetails = () => {
   const navigation = useNavigation();
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      style={{
+        backgroundColor: '#151515',
+      }}>
       <PageNavigator />
-      <View style={styles.headerContainer}>
-        <View style={styles.bookHeader}>
-          <Text style={styles.category}>HISTORY</Text>
-          <Text style={styles.title}>
-            Always forgive your enemies, nothing annoys.
+      <View style={styles.coverSection} />
+      <View style={styles.detailsSection} />
+      <View style={styles.bookSection}>
+        <Image style={styles.bookImage} source={book1} />
+        <Text style={styles.bookName}> Psycho </Text>
+        <Text style={styles.authorName}> Robert Bloch </Text>
+        <View style={styles.bookDetail}>
+          <View style={styles.detailItem}>
+            <Image source={list} />
+            <Text style={styles.detailText}>Chapters</Text>
+          </View>
+          <View style={styles.detailItem}>
+            <Image source={time} />
+            <Text style={styles.detailText}>Minutes</Text>
+          </View>
+          <View style={styles.detailItem}>
+            <Image source={star} />
+            <Text style={styles.detailText}>Insights</Text>
+          </View>
+        </View>
+        <ScrollView style={styles.bookDescription}>
+          <Text style={styles.descriptionHeader}>What's inside ?</Text>
+          <Text style={styles.descriptionText}>
+            Psycho, a novel by Robert Bloch published in 1959, is a gripping
+            psychological thriller that delves into the dark and twisted mind of
+            Norman Bates, a seemingly mild-mannered motel owner with a deeply
+            disturbed psyche. The story unfolds with Marion Crane, a young woman
+            who steals a large sum of money and ends up at the Bates Motel
+            during a stormy night. There, she encounters Norman Bates and his
+            domineering mother. As Marion's mysterious disappearance prompts an
+            investigation, the true horror of the Bates family is revealed. The
+            novel explores themes of identity, madness, and the duality of human
+            nature, culminating in a shocking twist that has left a lasting
+            impact on the genre. Bloch’s masterful storytelling and the complex
+            characterization of Norman Bates make Psycho a timeless classic in
+            horror literature.
           </Text>
-          <View style={styles.info}>
-            <Text style={styles.bookInfo}>Published from istudio</Text>
-            <Text style={styles.bookInfo}>26 Mar, 2024</Text>
-          </View>
-        </View>
-      </View>
-      <View style={styles.bookCoverBackground}>
-        <Image style={styles.bookCover} source={book1} />
-      </View>
-      <View style={styles.ratingContainer}>
-        <View style={styles.ratings}>
-          <View style={styles.ratingSection}>
-            <Text style={styles.ratingText}>4.5</Text>
-
-            <View style={styles.starsContainer}>
-              <Image style={styles.stars} source={star} />
-              <Image style={styles.stars} source={star} />
-              <Image style={styles.stars} source={star} />
-              <Image style={styles.stars} source={star} />
-              <Image style={styles.stars} source={star} />
-            </View>
-          </View>
-          <Text style={styles.bookInfo}>892 Ratings on Google Play</Text>
-        </View>
-      </View>
-      <View style={styles.detailContainer}>
-        <Text style={styles.detailText}>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-          dolores id, voluptate quibusdam iure odit voluptatum alias accusantium
-          eveniet accusamus rem maxime provident sunt ducimus obcaecati est
-          enim, adipisci vel? Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Perspiciatis dolores id, voluptate quibusdam iure odit
-          voluptatum alias accusantium eveniet accusamus rem maxime provident
-          sunt ducimus obcaecati est enim, adipisci vel? Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Perspiciatis dolores id, voluptate
-          quibusdam iure odit voluptatum alias accusantium eveniet accusamus rem
-          maxime provident sunt ducimus obcaecati est enim, adipisci vel? Lorem
-          ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
-          dolores id, voluptate quibusdam iure odit voluptatum alias accusantium
-          eveniet accusamus rem maxime provident sunt ducimus obcaecati est
-          enim, adipisci vel?
-        </Text>
+        </ScrollView>
       </View>
     </ScrollView>
   );
@@ -77,101 +84,78 @@ export default BookDetails;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
+    flexGrow: 1,
+    position: 'relative',
   },
-  text: {
-    color: 'black',
+  coverSection: {
+    flex: 0.25, //
+
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  category: {
-    color: 'orange',
-    fontSize: 15,
-    fontWeight: 'bold',
+  detailsSection: {
+    flex: 0.75,
+    backgroundColor: 'white',
+    justifyContent: 'flex-start',
+    padding: 20,
+    borderTopStartRadius: 40,
+    borderTopEndRadius: 40,
   },
-  title: {
-    color: 'black',
-    fontSize: 30,
-    fontWeight: 'bold',
+  bookSection: {
+    position: 'absolute',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 8,
+    top: 80,
+    width: screenWidth,
   },
-  bookInfo: {
-    color: 'grey',
-    fontSize: 12,
+  authorName: {
+    fontSize: 24,
     fontWeight: 'light',
   },
-  bookCoverBackground: {
-    backgroundColor: '#DADADA',
-    borderTopLeftRadius: 40,
-    borderBottomLeftRadius: 40,
-    height: 185,
-    width: '100%',
-    marginLeft: 20,
-    marginVertical: 15,
-  },
-  info: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  bookCover: {
-    borderTopLeftRadius: 40,
-    borderBottomLeftRadius: 40,
-    height: 185,
-    width: '100%',
-    marginLeft: 40,
-  },
-  headerContainer: {
-    width: '100%',
-    alignItems: 'center',
-    paddingVertical: 15,
-  },
-  bookHeader: {
-    width: '90%',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-  },
-  navigator: {
-    width: '100%',
-    paddingHorizontal: 15,
-    paddingVertical: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  navigatorButtonsImage: {
-    width: 26,
-    height: 26,
-  },
-  detailContainer: {
-    width: '100%',
-    flexDirection: 'column',
-    alignItems: 'center',
-    paddingVertical: 15,
-  },
-  detailText: {
-    width: '90%',
+
+  bookName: {
+    fontSize: 36,
+    fontWeight: 'bold',
     color: 'black',
   },
-  ratingContainer: {
-    width: '100%',
+  bookDetail: {
+    flexDirection: 'row',
+    gap: 12,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  detailItem: {
     flexDirection: 'row',
     justifyContent: 'center',
-    paddingVertical: 10,
+    alignItems: 'center',
+    gap: 8,
   },
-  ratings: {
-    width: '90%',
+  detailText: {
+    color: 'black',
+    fontSize: 20,
   },
-  ratingText: {
+  bookDescription: {
+    marginTop: 16,
+    marginHorizontal: 12,
+  },
+
+  descriptionHeader: {
+    textAlign: 'center',
     color: 'black',
     fontSize: 30,
+    fontWeight: 'bold',
   },
-  ratingSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 5,
+  descriptionText: {
+    textAlign: 'center',
+    color: 'black',
+    fontSize: 24,
   },
-  starsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: 100,
-  },
-  stars: {
-    width: 15,
-    height: 15,
+
+  bookImage: {
+    width: 180,
+    height: 300,
+    borderRadius: 20,
   },
 });

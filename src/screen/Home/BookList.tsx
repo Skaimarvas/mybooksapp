@@ -2,19 +2,13 @@ import React from 'react';
 import {Image, ScrollView, StyleSheet, TouchableOpacity} from 'react-native';
 import {bookList} from '../../mock/BookListData';
 import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {ScreenParams} from '../../../App';
 
 const BookList: React.FC = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<ScreenParams>>();
   return (
-    <ScrollView
-      contentContainerStyle={{
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        justifyContent: 'center',
-        alignContent: 'flex-start',
-        gap: 10,
-      }}
-      style={styles.bookSection}>
+    <ScrollView contentContainerStyle={{}} style={styles.bookSection}>
       {bookList &&
         bookList.map((book: any, i: number) => (
           <TouchableOpacity
