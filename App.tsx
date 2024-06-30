@@ -1,20 +1,29 @@
-import React from 'react';
-import {Image, StyleSheet} from 'react-native';
+import * as eva from '@eva-design/eva';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {ApplicationProvider} from '@ui-kitten/components';
+import React from 'react';
+import {Image, StyleSheet} from 'react-native';
+import {default as mapping} from './mapping.json';
+import {default as theme} from './custom-theme.json';
+import {AlertNotificationRoot} from 'react-native-alert-notification';
 
 //Assets
-import HomePng from './src/assets/home.png';
-import TopBooksPng from './src/assets/topbooks.png';
 import AudioBooksPng from './src/assets/audiobooks.png';
-import SavedBooksPng from './src/assets/savedbooks.png';
+import HomePng from './src/assets/home.png';
 import ProfilePng from './src/assets/profile.png';
+import SavedBooksPng from './src/assets/savedbooks.png';
+import TopBooksPng from './src/assets/topbooks.png';
 
 //Pages
-import Home from './src/screen/Home/HomePage';
 import BookDetails from './src/screen/BookDetails/BookDetails';
+import Homepage from './src/screen/Home/HomePage';
+import Login from './src/screen/Login/Login';
+import SignUp from './src/screen/SignUp/SignUp';
 import TopBooks from './src/screen/TopBooks/TopBooks';
+import Welcome from './src/screen/Welcome/Welcome';
+import Colors from './src/constants/Colors';
 
 /** Notes(backBehavior): 
      * In a React Native app using React Navigation, the backBehavior prop is used to configure the behavior of the back button in a tab navigator.
@@ -30,7 +39,7 @@ This behavior can be useful in scenarios where you want to control how the back 
 
 export type ScreenParams = {
   Home: any;
-  HomePage: any;
+  Homepage: any;
   TopHeader: any;
   BookList: any;
   BookDetails: any;
@@ -43,6 +52,9 @@ export type ScreenParams = {
   SavedBooks: any;
 
   Profile: any;
+  Login: any;
+  Welcome: any;
+  SignUp: any;
 
   BottomNavigator: any;
 };
@@ -57,7 +69,7 @@ const HomePageNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Screen.Screen name="Home" component={Home} />
+      <Screen.Screen name="Homepage" component={Homepage} />
     </Screen.Navigator>
   );
 };
@@ -69,6 +81,16 @@ const TopBooksNavigator = () => {
         headerShown: false,
       }}>
       <Screen.Screen name="TopBooks" component={TopBooks} />
+    </Screen.Navigator>
+  );
+};
+const ProfileNavigator = () => {
+  return (
+    <Screen.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Screen.Screen name="Homepage" component={Homepage} />
     </Screen.Navigator>
   );
 };
@@ -90,7 +112,7 @@ const BottomNavigator = () => {
         },
       }}>
       <BottomTabs.Screen
-        name="HomePage"
+        name="Home"
         component={HomePageNavigator}
         options={{
           tabBarIcon: ({focused}) => (
@@ -102,43 +124,6 @@ const BottomNavigator = () => {
                 styles.tabBarIcon,
               ]}
               source={HomePng}
-            />
-          ),
-          tabBarActiveBackgroundColor: '#4D4D4D',
-        }}
-      />
-      <BottomTabs.Screen
-        name="TopBooksPage"
-        component={TopBooksNavigator}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <Image
-              style={[
-                {
-                  backgroundColor: focused ? '#4D4D4D' : '#FFFFFF',
-                },
-                styles.tabBarIcon,
-              ]}
-              source={TopBooksPng}
-            />
-          ),
-          tabBarActiveBackgroundColor: '#4D4D4D',
-        }}
-      />
-
-      <BottomTabs.Screen
-        name="AudioBooks"
-        component={HomePageNavigator}
-        options={{
-          tabBarIcon: ({focused}) => (
-            <Image
-              style={[
-                {
-                  backgroundColor: focused ? '#4D4D4D' : '#FFFFFF',
-                },
-                styles.tabBarIcon,
-              ]}
-              source={AudioBooksPng}
             />
           ),
           tabBarActiveBackgroundColor: '#4D4D4D',
@@ -166,7 +151,7 @@ const BottomNavigator = () => {
 
       <BottomTabs.Screen
         name="Profile"
-        component={HomePageNavigator}
+        component={ProfileNavigator}
         options={{
           tabBarIcon: ({focused}) => (
             <Image
@@ -186,17 +171,38 @@ const BottomNavigator = () => {
   );
 };
 
+const IColors = {
+  label: Colors.regular.grey,
+  card: Colors.regular.white,
+  overlay: Colors.regular.white,
+  success: Colors.regular.green,
+  danger: Colors.regular.red,
+  warning: Colors.regular.orange,
+  info: Colors.regular.blue,
+};
+
 const App: React.FC = () => {
   return (
-    <NavigationContainer>
-      <Screen.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}>
-        <Screen.Screen name="BottomNavigator" component={BottomNavigator} />
-        <Screen.Screen name="BookDetails" component={BookDetails} />
-      </Screen.Navigator>
-    </NavigationContainer>
+    <AlertNotificationRoot colors={[IColors, IColors]}>
+      <ApplicationProvider
+        {...eva}
+        customMapping={mapping as any}
+        theme={{...eva.light, ...theme}}>
+        <NavigationContainer>
+          <Screen.Navigator
+            initialRouteName="Welcome"
+            screenOptions={{
+              headerShown: false,
+            }}>
+            <Screen.Screen name="Login" component={Login} />
+            <Screen.Screen name="SignUp" component={SignUp} />
+            <Screen.Screen name="Welcome" component={Welcome} />
+            <Screen.Screen name="BottomNavigator" component={BottomNavigator} />
+            <Screen.Screen name="BookDetails" component={BookDetails} />
+          </Screen.Navigator>
+        </NavigationContainer>
+      </ApplicationProvider>
+    </AlertNotificationRoot>
   );
 };
 
