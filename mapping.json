@@ -1,0 +1,20 @@
+{
+  "components": {
+    "Button": {
+      "appearances": {
+        "default": {
+          "mapping": {
+            "backgroundColor": "#FF4603"
+          },
+          "variantGroups": {
+            "status": {
+              "basic": {
+                "backgroundColor": "#FF4603"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
