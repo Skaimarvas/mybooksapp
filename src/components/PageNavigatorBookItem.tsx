@@ -1,30 +1,30 @@
 import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 
 //Hooks
 import {useNavigation} from '@react-navigation/native';
 
 //Assets
-import left from '../assets/chevronleft.png';
+import save from '../assets/bookmark1.png';
+import close from '../assets/close1.png';
 
-interface Iprops {
-  title: string;
-}
-
-const PageNavigator: React.FC<Iprops> = ({title}) => {
+const PageNavigatorBookItem = () => {
   const navigation = useNavigation();
 
   return (
     <View style={styles.navigator}>
       <TouchableOpacity style={styles.back} onPress={() => navigation.goBack()}>
-        <Image source={left} style={styles.navigatorButtonsImage} />
+        <Image source={close} style={styles.navigatorButtonsImage} />
       </TouchableOpacity>
-      <Text style={styles.titleText}> {title} </Text>
+
+      <TouchableOpacity>
+        <Image source={save} style={styles.navigatorButtonsImage} />
+      </TouchableOpacity>
     </View>
   );
 };
 
-export default PageNavigator;
+export default PageNavigatorBookItem;
 
 const styles = StyleSheet.create({
   navigator: {
@@ -32,17 +32,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 20,
     flexDirection: 'row',
-    justifyContent: 'flex-start',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
   navigatorButtonsImage: {
     width: 26,
     height: 26,
-  },
-  titleText: {
-    color: 'black',
-    fontSize: 20,
-    fontWeight: 'bold',
   },
   back: {
     padding: 4,
