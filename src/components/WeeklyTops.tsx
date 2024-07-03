@@ -26,7 +26,9 @@ const WeeklyTops = () => {
             <TouchableOpacity
               key={i}
               onPress={() => navigation.navigate('BookDetails')}>
-              <Image style={styles.bookImage} source={book.image} />
+              <View style={styles.bookSection}>
+                <Image style={styles.bookImage} source={book.image} />
+              </View>
             </TouchableOpacity>
           ))}
       </ScrollView>
@@ -40,7 +42,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
     marginHorizontal: 16,
-    marginVertical: 8,
   },
   topicText: {
     fontSize: 20,
@@ -58,6 +59,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'flex-start',
     gap: 16,
+    paddingVertical: 8,
+  },
+  bookSection: {
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 10},
+    shadowOpacity: 1,
+    shadowRadius: 20,
+    elevation: 2,
+    borderRadius: 20,
   },
   bookImage: {
     width: 140,

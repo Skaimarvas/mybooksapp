@@ -8,38 +8,33 @@ import {
   View,
 } from 'react-native';
 //Hooks
-import {useNavigation} from '@react-navigation/native';
 
 //Assets
-import list from '../../assets/List.png';
 import time from '../../assets/Icon.png';
-import star from '../../assets/star.png';
+import list from '../../assets/List.png';
 import book1 from '../../assets/book1black.jpg';
-import PageNavigator from '../../components/PageNavigator';
+import star from '../../assets/star.png';
+import PageNavigatorBookItem from '../../components/PageNavigatorBookItem';
 //Components
-
-/**Notes(Focus top on image)
- * I need to show top cover of the book
- * Solution: can't do all images
- *
- */
 
 const screenHeight = Dimensions.get('screen').height;
 const screenWidth = Dimensions.get('screen').width;
 
 const BookDetails = () => {
-  const navigation = useNavigation();
   return (
     <ScrollView
       contentContainerStyle={styles.container}
       style={{
         backgroundColor: '#151515',
       }}>
-      <PageNavigator />
-      <View style={styles.coverSection} />
-      <View style={styles.detailsSection} />
+      <PageNavigatorBookItem />
+      <View style={styles.bookImageSection}>
+        <View style={styles.forShadow}>
+          <Image style={styles.bookImage} source={book1} />
+        </View>
+      </View>
+
       <View style={styles.bookSection}>
-        <Image style={styles.bookImage} source={book1} />
         <Text style={styles.bookName}> Psycho </Text>
         <Text style={styles.authorName}> Robert Bloch </Text>
         <View style={styles.bookDetail}>
@@ -56,7 +51,7 @@ const BookDetails = () => {
             <Text style={styles.detailText}>Insights</Text>
           </View>
         </View>
-        <ScrollView style={styles.bookDescription}>
+        <View style={styles.bookDescription}>
           <Text style={styles.descriptionHeader}>What's inside ?</Text>
           <Text style={styles.descriptionText}>
             Psycho, a novel by Robert Bloch published in 1959, is a gripping
@@ -73,7 +68,7 @@ const BookDetails = () => {
             characterization of Norman Bates make Psycho a timeless classic in
             horror literature.
           </Text>
-        </ScrollView>
+        </View>
       </View>
     </ScrollView>
   );
@@ -84,37 +79,33 @@ export default BookDetails;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
-    flexGrow: 1,
     position: 'relative',
   },
-  coverSection: {
-    flex: 0.25, //
-
+  bookImageSection: {
+    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-  },
-  detailsSection: {
-    flex: 0.75,
-    backgroundColor: 'white',
-    justifyContent: 'flex-start',
-    padding: 20,
-    borderTopStartRadius: 40,
-    borderTopEndRadius: 40,
+    width: screenWidth,
+    position: 'absolute',
+    top: 120,
+    zIndex: 1,
   },
   bookSection: {
-    position: 'absolute',
+    backgroundColor: 'white',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    borderTopStartRadius: 40,
+    borderTopEndRadius: 40,
     gap: 8,
-    top: 80,
+    paddingTop: 200,
+    paddingBottom: 20,
+    marginTop: 160,
     width: screenWidth,
   },
   authorName: {
     fontSize: 24,
     fontWeight: 'light',
   },
-
   bookName: {
     fontSize: 36,
     fontWeight: 'bold',
@@ -137,20 +128,28 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   bookDescription: {
-    marginTop: 16,
+    marginTop: 20,
     marginHorizontal: 12,
+    gap: 8,
   },
-
   descriptionHeader: {
     textAlign: 'center',
     color: 'black',
-    fontSize: 30,
+    fontSize: 28,
     fontWeight: 'bold',
   },
   descriptionText: {
     textAlign: 'center',
     color: 'black',
-    fontSize: 24,
+    fontSize: 20,
+  },
+  forShadow: {
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 10},
+    shadowOpacity: 0.5,
+    shadowRadius: 10,
+    elevation: 15,
+    borderRadius: 20,
   },
 
   bookImage: {

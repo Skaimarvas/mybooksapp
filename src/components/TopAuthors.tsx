@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 8,
   },
+
   topicText: {
     fontSize: 20,
     fontWeight: 'bold',
