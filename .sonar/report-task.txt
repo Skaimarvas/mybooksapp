@@ -1,0 +1,6 @@
+projectKey=mybookapp
+serverUrl=http://localhost:9000
+serverVersion=10.6.0.92116
+dashboardUrl=http://localhost:9000/dashboard?id=mybookapp
+ceTaskId=10894eff-8f1d-43d8-b797-b8edb2338a31
+ceTaskUrl=http://localhost:9000/api/ce/task?id=10894eff-8f1d-43d8-b797-b8edb2338a31
