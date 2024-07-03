@@ -10,11 +10,9 @@ import {default as theme} from './custom-theme.json';
 import {AlertNotificationRoot} from 'react-native-alert-notification';
 
 //Assets
-import AudioBooksPng from './src/assets/audiobooks.png';
 import HomePng from './src/assets/home.png';
 import ProfilePng from './src/assets/profile.png';
-import SavedBooksPng from './src/assets/savedbooks.png';
-import TopBooksPng from './src/assets/topbooks.png';
+import Reading from './src/assets/reading.png';
 
 //Pages
 import BookDetails from './src/screen/BookDetails/BookDetails';
@@ -24,6 +22,7 @@ import SignUp from './src/screen/SignUp/SignUp';
 import TopBooks from './src/screen/TopBooks/TopBooks';
 import Welcome from './src/screen/Welcome/Welcome';
 import Colors from './src/constants/Colors';
+import BookList from './src/screen/Home/BookList';
 
 /** Notes(backBehavior): 
      * In a React Native app using React Navigation, the backBehavior prop is used to configure the behavior of the back button in a tab navigator.
@@ -142,7 +141,7 @@ const BottomNavigator = () => {
                 },
                 styles.tabBarIcon,
               ]}
-              source={SavedBooksPng}
+              source={Reading}
             />
           ),
           tabBarActiveBackgroundColor: '#4D4D4D',
@@ -199,6 +198,7 @@ const App: React.FC = () => {
             <Screen.Screen name="Welcome" component={Welcome} />
             <Screen.Screen name="BottomNavigator" component={BottomNavigator} />
             <Screen.Screen name="BookDetails" component={BookDetails} />
+            <Screen.Screen name="BookList" component={BookList} />
           </Screen.Navigator>
         </NavigationContainer>
       </ApplicationProvider>
@@ -211,8 +211,8 @@ const styles = StyleSheet.create({
   sectionTitle: {},
   sectionContainer: {},
   tabBarIcon: {
-    width: 20,
-    height: 20,
+    width: 30,
+    height: 30,
     resizeMode: 'contain',
   },
 });
