@@ -4,25 +4,25 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {ApplicationProvider} from '@ui-kitten/components';
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
-import {default as mapping} from './mapping.json';
-import {default as theme} from './custom-theme.json';
+import {Dimensions, Image, StyleSheet} from 'react-native';
 import {AlertNotificationRoot} from 'react-native-alert-notification';
+import {default as theme} from './custom-theme.json';
+import {default as mapping} from './mapping.json';
 
 //Assets
 import HomePng from './src/assets/home.png';
 import ProfilePng from './src/assets/profile.png';
 import Reading from './src/assets/reading.png';
+import Colors from './src/constants/Colors';
 
 //Pages
 import BookDetails from './src/screen/BookDetails/BookDetails';
+import BookList from './src/screen/Home/BookList';
 import Homepage from './src/screen/Home/HomePage';
 import Login from './src/screen/Login/Login';
 import SignUp from './src/screen/SignUp/SignUp';
-import TopBooks from './src/screen/TopBooks/TopBooks';
 import Welcome from './src/screen/Welcome/Welcome';
-import Colors from './src/constants/Colors';
-import BookList from './src/screen/Home/BookList';
+import ReadingList from './src/screen/ReadingList/ReadingList';
 
 /** Notes(backBehavior): 
      * In a React Native app using React Navigation, the backBehavior prop is used to configure the behavior of the back button in a tab navigator.
@@ -36,6 +36,9 @@ This behavior can be useful in scenarios where you want to control how the back 
  *  Could be about not installing react-native-screen and react-native-safe-area-context
  */
 
+export const screenWidth = Dimensions.get('screen').width;
+export const screenHeight = Dimensions.get('screen').height;
+
 export type ScreenParams = {
   Home: any;
   Homepage: any;
@@ -43,12 +46,8 @@ export type ScreenParams = {
   BookList: any;
   BookDetails: any;
 
-  TopBooksPage: any;
-  TopBooks: any;
-
-  AudioBooks: any;
-
-  SavedBooks: any;
+  ReadingList: any;
+  ReadingListPage: any;
 
   Profile: any;
   Login: any;
@@ -73,16 +72,17 @@ const HomePageNavigator = () => {
   );
 };
 
-const TopBooksNavigator = () => {
+const ReadingListPageNavigator = () => {
   return (
     <Screen.Navigator
       screenOptions={{
         headerShown: false,
       }}>
-      <Screen.Screen name="TopBooks" component={TopBooks} />
+      <Screen.Screen name="ReadingList" component={ReadingList} />
     </Screen.Navigator>
   );
 };
+
 const ProfileNavigator = () => {
   return (
     <Screen.Navigator
@@ -130,8 +130,8 @@ const BottomNavigator = () => {
       />
 
       <BottomTabs.Screen
-        name="SavedBooks"
-        component={HomePageNavigator}
+        name="ReadingListPage"
+        component={ReadingListPageNavigator}
         options={{
           tabBarIcon: ({focused}) => (
             <Image
