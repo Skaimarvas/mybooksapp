@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import ContinueReading from '../../components/ContinueReading';
+import OngoingRead from '../../components/OngoingRead';
 import ReadingHeader from '../../components/ReadingHeader';
 import SavedBooks from '../../components/SavedBooks';
-import OngoingRead from '../../components/OngoingRead';
 
 const ReadingList = () => {
   return (
-    <View>
+    <View style={styles.container}>
       <ReadingHeader />
       <ContinueReading />
       <OngoingRead />
@@ -18,4 +18,8 @@ const ReadingList = () => {
 
 export default ReadingList;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  container: {
+    gap: 24,
+  },
+});
