@@ -23,6 +23,7 @@ import Login from './src/screen/Login/Login';
 import SignUp from './src/screen/SignUp/SignUp';
 import Welcome from './src/screen/Welcome/Welcome';
 import ReadingList from './src/screen/ReadingList/ReadingList';
+import Profile from './src/screen/Profile/Profile';
 
 /** Notes(backBehavior): 
      * In a React Native app using React Navigation, the backBehavior prop is used to configure the behavior of the back button in a tab navigator.
@@ -89,7 +90,7 @@ const ProfileNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <Screen.Screen name="Homepage" component={Homepage} />
+      <Screen.Screen name="Profile" component={Profile} />
     </Screen.Navigator>
   );
 };
