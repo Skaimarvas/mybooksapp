@@ -11,16 +11,13 @@ const OngoingRead = () => {
         <View style={styles.bookImageView}>
           <Image style={styles.bookImage} source={bookSample} />
         </View>
-
-        <Text>Book Image</Text>
       </View>
       <View style={styles.detailSection}>
-        <View>
-          <Text>Book Name</Text>
-        </View>
+        <Text style={styles.bookName}>Brave New World</Text>
+
         <View style={styles.progressSection}>
           <ProgressBar color="black" progress={0.5} style={styles.progress} />
-          <Text>50%</Text>
+          <Text style={styles.percentageText}>50%</Text>
         </View>
       </View>
     </View>
@@ -40,6 +37,9 @@ const styles = StyleSheet.create({
   progress: {
     height: 12,
     borderRadius: 8,
+    width: 150,
+    borderColor: 'black',
+    borderWidth: 0.5,
   },
   progressView: {
     backgroundColor: 'grey',
@@ -62,14 +62,25 @@ const styles = StyleSheet.create({
   },
   detailSection: {
     flexDirection: 'column',
-    alignItems: 'center',
     justifyContent: 'space-around',
-    borderColor: 'lime',
+    alignItems: 'center',
+    backgroundColor: '#DADADA',
     borderWidth: 1,
-    height: 100,
+    borderRadius: 20,
+    height: 150,
+    width: 220,
+  },
+  percentageText: {
+    color: 'black',
+  },
+  bookName: {
+    fontSize: 24,
+    color: 'black',
+    fontWeight: 'bold',
   },
   progressSection: {
     flexDirection: 'row',
+    gap: 4,
     alignItems: 'center',
   },
 });
