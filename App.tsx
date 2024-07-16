@@ -8,6 +8,7 @@ import {Dimensions, Image, StyleSheet} from 'react-native';
 import {AlertNotificationRoot} from 'react-native-alert-notification';
 import {default as theme} from './custom-theme.json';
 import {default as mapping} from './mapping.json';
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 
 //Assets
 import HomePng from './src/assets/home.png';
@@ -24,6 +25,7 @@ import SignUp from './src/screen/SignUp/SignUp';
 import Welcome from './src/screen/Welcome/Welcome';
 import ReadingList from './src/screen/ReadingList/ReadingList';
 import Profile from './src/screen/Profile/Profile';
+import ApiProvider from './src/api/ApiProvider';
 
 /** Notes(backBehavior): 
      * In a React Native app using React Navigation, the backBehavior prop is used to configure the behavior of the back button in a tab navigator.
@@ -182,6 +184,8 @@ const IColors = {
 };
 
 const App: React.FC = () => {
+  const queryClient = new QueryClient();
+
   return (
     <AlertNotificationRoot colors={[IColors, IColors]}>
       <ApplicationProvider
@@ -189,18 +193,25 @@ const App: React.FC = () => {
         customMapping={mapping as any}
         theme={{...eva.light, ...theme}}>
         <NavigationContainer>
-          <Screen.Navigator
-            initialRouteName="Welcome"
-            screenOptions={{
-              headerShown: false,
-            }}>
-            <Screen.Screen name="Login" component={Login} />
-            <Screen.Screen name="SignUp" component={SignUp} />
-            <Screen.Screen name="Welcome" component={Welcome} />
-            <Screen.Screen name="BottomNavigator" component={BottomNavigator} />
-            <Screen.Screen name="BookDetails" component={BookDetails} />
-            <Screen.Screen name="BookList" component={BookList} />
-          </Screen.Navigator>
+          <QueryClientProvider client={queryClient}>
+            <ApiProvider>
+              <Screen.Navigator
+                initialRouteName="Welcome"
+                screenOptions={{
+                  headerShown: false,
+                }}>
+                <Screen.Screen name="Login" component={Login} />
+                <Screen.Screen name="SignUp" component={SignUp} />
+                <Screen.Screen name="Welcome" component={Welcome} />
+                <Screen.Screen
+                  name="BottomNavigator"
+                  component={BottomNavigator}
+                />
+                <Screen.Screen name="BookDetails" component={BookDetails} />
+                <Screen.Screen name="BookList" component={BookList} />
+              </Screen.Navigator>
+            </ApiProvider>
+          </QueryClientProvider>
         </NavigationContainer>
       </ApplicationProvider>
     </AlertNotificationRoot>
