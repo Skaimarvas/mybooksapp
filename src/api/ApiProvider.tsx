@@ -8,11 +8,11 @@ import {ScreenParams} from '../../App';
 
 export const storage = new MMKV();
 
-export const BASE_URL = '...';
+export const BASE_URL = 'http://192.168.1.1:3001';
 
 axios.defaults.timeout = 10000;
 
-// axios.defaults.baseURL = BASE_URL
+axios.defaults.baseURL = BASE_URL;
 
 interface Iprops {
   children: any;
@@ -39,18 +39,18 @@ const ApiProvider: React.FC<Iprops> = ({children}) => {
     );
     axios.interceptors.response.use(
       async (response: any) => {
-        if (response.data.token) {
+        if (response.data?.token) {
           storage.set('mybookapp:token', response?.data?.token);
         }
         return response;
       },
       (error: any) => {
         const statusCode = error.response ? error.response.status : null;
-        const detailMessage = error.response.data;
+        const detailMessage = error.response;
 
         switch (statusCode) {
           default:
-            return;
+            return detailMessage;
         }
       },
     );
