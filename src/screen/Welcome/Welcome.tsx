@@ -64,7 +64,7 @@ const Welcome = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (token) {
+      if (!token) {
         navigation.reset({
           index: 0,
           routes: [{name: 'BottomNavigator'}],
