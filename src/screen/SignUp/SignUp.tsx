@@ -1,6 +1,7 @@
 import {zodResolver} from '@hookform/resolvers/zod';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {useMutation} from '@tanstack/react-query';
 import {Button, Input} from '@ui-kitten/components';
 import React from 'react';
 import {Controller, useForm} from 'react-hook-form';
@@ -8,6 +9,7 @@ import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import {ALERT_TYPE, Toast} from 'react-native-alert-notification';
 import {z} from 'zod';
 import {ScreenParams} from '../../../App';
+import {createUserRequest} from '../../api/controllers/usersController';
 
 const defaultSignUpForm = {
   firstname: '',
@@ -54,14 +56,29 @@ const SignUp = () => {
 
   const navigation = useNavigation<NativeStackNavigationProp<ScreenParams>>();
 
+  const postRequest = useMutation(createUserRequest, {
+    onSuccess: () => {
+      Toast.show({
+        type: ALERT_TYPE.SUCCESS,
+        title: 'Success',
+        textBody: 'User has been registered succesfully',
+      });
+      navigation.replace('Login');
+    },
+  });
+
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log('Form Data:', data);
-    Toast.show({
-      type: ALERT_TYPE.SUCCESS,
-      title: 'Success',
-      textBody: 'User has been registered succesfully',
-    });
-    navigation.replace('Login');
+    const formData = {
+      userName: data.username,
+      email: data.email,
+      password: data.password,
+      firstName: data.firstname,
+      lastName: data.lastname,
+    };
+
+    // createUserRequest(formData);
+
+    postRequest.mutate(formData);
   };
 
   return (
